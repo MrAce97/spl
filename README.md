@@ -22,12 +22,12 @@
 ; Определите функцию разностт формирующую разность двух множеств, т.е. удал€ющую 
 ; из первого множества все общие со вторым множеством элементы
 (defun разность (lst1 lst2)
-	((lambda (head body)(
+	((lambda (head body difference)(
 		cond
 			((null lst1) nil)
-			((member_ head lst2) (разность body lst2))
-			(T (cons head (разность body lst2)))
-		))(car lst1) (cdr lst1) )
+			((member_ head lst2) difference))
+			(T (cons head difference))
+		))(car lst1) (cdr lst1) (разность body lst2))
 
 )
 (defun member_ (el lst)
