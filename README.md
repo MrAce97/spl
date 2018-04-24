@@ -124,5 +124,5 @@
  ;3. Определите лисповскую форму (IF условие p q) в виде макроса. 
  (defmacro myif (res p q)
     `(if res,p,q))
-  (write (myif > 3 2 3) )
+  (write (myif (> 3 2 )3 2) )
 ~~~
