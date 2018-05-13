@@ -109,6 +109,18 @@
 
 (write (удал #'SORT_ '(1 3 4 5 6)))
 
+
+ (defun generator () 
+                     
+                         (let ((x 0)) 
+                                 (lambda () (setq x (+ x 1))))
+   )
+(setq s1 (generator))
+
+
+(write (funcall (generator)))
+
+
 ;Макросы
 
 ;1. Определите макрос, который возвращает свой вызов. 
