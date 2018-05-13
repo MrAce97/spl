@@ -132,4 +132,10 @@
 rep :: [Integer] -> Integer -> Integer -> [Integer]
 rep [] _ _ = []
 rep (x:xs) element value = if element == x then value:rep xs element value else x:rep xs element value
+
+
+;нечетные
+rep :: [Integer] -> [Integer]
+rep (x:[]) = x: []
+rep (x:xs) = x : rep (tail xs)
 ~~~
