@@ -44,72 +44,42 @@
 ;Функции высших порядков
 ;2.Определите функционал (MAPLIST fn список) для одного списочного аргумента
 
-(defun SORT_(el)
+(defun maplist_(fn lst)
+    (cond ((null lst) nil)
+          (t (cons (funcall fn (car lst)) (maplst fn (cdr lst))))
+         )                 
+    )
+    
 
-   (cond 
-          ((> el 2) T))
-          (T nil)
-     )
-)
-
-(defun MAPLIST_ (fn lst)
-         
-         (cond 
-             ((null lst) nil)
-             ((funcall fn (car lst)) (cons (car lst) (MAPLIST_ fn (cdr lst))))
-             (T (MAPLIST_ fn (cdr lst)) )
-             
-          )                 
-)
-
-(write (MAPLIST_ #'SORT_ '(1 2 3 4 5 6)))
 
 ;4.Определите функциональный предикат (каждый пред cписок), который истинен только в том случае, когда €вл€ющийс€ функц аргументом
 ;предикат истинен дл€ всех элементов списка список.
 
-(defun SORT_(el)
+(defun response(el) 
+                        (if (> el 4) nil (list t))
+                     
+                     )
 
-   (cond 
-          ((> el 2) T)
-          (T nil)
-     )
-)
+(defun каждый(lst) 
+                   (null (mapcan #'response lst))
+                    )
 
-(defun каждый (fn lst)
-         
-         (cond 
-             ((null lst) T)
-             ((funcall fn (car lst)) (каждый fn (cdr lst)))
-             (T nil)
-             
-          )                 
-)
-
-(write (каждый #'SORT_ '(1 3 4 5 6)))
+(print (каждый '(5 6 8)))
 
 ;6.Определите фильтер (удал пред список), удал€ющий из списка все элементы, которые обладают свойством наличие которого ;определ€ет предикат пред
 
-(defun SORT_(el)
+(defun response(el) 
+                        (if (> el 4) nil (list el))
+                     
+                     )
 
-   (cond 
-          ((> el 5) T)
-          (T nil)
-     )
-)
+(defun удалить(lst) 
+                  (mapcan #'response lst)
+                    )
 
-(defun удал (fn lst)
-         
-         (cond 
-             ((null lst) nil)
-             ((funcall fn (car lst)) (удал fn (cdr lst)))
-             (T (cons (car lst) (удал fn (cdr lst) )))
-             
-          )                 
-)
+(print (удалить '(1 2 8)))
 
-(write (удал #'SORT_ '(1 3 4 5 6)))
-
-
+;8. Напишите генератор натуральных чисел: 0, 1, 2, 3, 4, 5, ... 
  (defun generator () 
                      
                          (let ((x 0)) 
@@ -139,20 +109,21 @@
     `(if res,p,q))
   (write (myif (> 3 2 )3 2) )
 ~~~
-
+HASKELL
 ~~~ haskell
+; Заменяет все вхождения элемента
 rep :: [Integer] -> Integer -> Integer -> [Integer]
 rep [] _ _ = []
 rep (x:xs) element value = if element == x then value:rep xs element value else x:rep xs element value
 
 
 ;;нечетные
-rep :: [Integer] -> [Integer]
-rep (x:[]) = x: []
-rep (x:xs) = x : rep (tail xs)
+odd :: [Integer] -> [Integer]
+odd (x:[]) = x: []
+odd (x:xs) = x : odd (tail xs)
 
 ;;произведение векторов
-rep :: [Integer] -> [Integer] -> Integer
-rep [] []= 0
-rep (x:xs) (y:ys) = (y*x) + (rep xs ys)
+multivec :: [Integer] -> [Integer] -> Integer
+multivec [] []= 0
+multivec (x:xs) (y:ys) = (y*x) + (multivec xs ys)
 ~~~
